@@ -1,17 +1,23 @@
 package com.med.voll.api.controller;
-import com.med.voll.api.medicos.DadosDeMedicos;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import com.med.voll.api.medicos.DadosDeCadastroMedicos;
+import com.med.voll.api.medicos.Medico;
+import com.med.voll.api.medicos.MedicoRepository;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("medicos")
 public class MedicoController {
 
-    @PostMapping
-    public void cadastrar(@RequestBody DadosDeMedicos dados) {
-        System.out.println(dados);
-    }
+    @Autowired
+    private MedicoRepository repository;
 
+    @PostMapping
+    @Transactional
+    public void cadastrar(@RequestBody @Valid DadosDeCadastroMedicos dados) {
+        repository.save(new Medico(dados));
+    }
 }
