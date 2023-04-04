@@ -1,7 +1,4 @@
 package com.med.voll.api.endereco;
-
-
-import com.med.voll.api.paciente.DadosDePaciente;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

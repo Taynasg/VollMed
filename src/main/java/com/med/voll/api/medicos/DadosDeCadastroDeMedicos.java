@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-public record DadosDeCadastroMedicos(
+public record DadosDeCadastroDeMedicos(
         @NotBlank
         String nome,
         @NotBlank
@@ -23,6 +23,7 @@ public record DadosDeCadastroMedicos(
         @NotNull
         Especialidade especialidade,
 
-        @NotNull @Valid DadosEndereco endereco) {
+        @NotNull @Valid
+        DadosEndereco endereco) {
 
 }
