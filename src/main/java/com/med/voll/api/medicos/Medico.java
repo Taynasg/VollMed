@@ -33,7 +33,7 @@ public class Medico {
     private Especialidade especialidade;
 
     //Essa anotação determina que quando a tabela médico for gerada,
-    //os dados contidos no 'objeto endereco"
+    //os dados contidos no 'objeto dadosEndereco"
     @Embedded
     private Endereco endereco;
 
