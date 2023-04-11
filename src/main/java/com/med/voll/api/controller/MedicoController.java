@@ -31,7 +31,8 @@ public class MedicoController {
     @Transactional
     public void atualizar(@RequestBody @Valid DadosDeAtualizacaoDeMedicos dadosAtualizados) {
         var medico = repository.getReferenceById(dadosAtualizados.id());
-            medico.atualizandoDados(dadosAtualizados);
+        medico.atualizandoDados(dadosAtualizados);
 
     }
+
 }
