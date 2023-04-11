@@ -1,5 +1,6 @@
 package com.med.voll.api.medicos;
 
+import com.med.voll.api.endereco.DadosEndereco;
 import com.med.voll.api.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -46,6 +47,19 @@ public class Medico {
         this.especialidade = dados.especialidade();
         this.endereco = new Endereco(dados.endereco());
     }
+
+    public void atualizandoDados(DadosDeAtualizacaoDeMedicos dadosAtualizados) {
+        if (dadosAtualizados.nome() != null) {
+            this.nome = dadosAtualizados.nome();
+        }
+        if (dadosAtualizados.telefone() != null) {
+            this.telefone = dadosAtualizados.telefone();
+        }
+        if (dadosAtualizados.dadosEndereco() != null) {
+            this.endereco.atualizar(dadosAtualizados.dadosEndereco());
+        }
+    }
+
 
 }
 
