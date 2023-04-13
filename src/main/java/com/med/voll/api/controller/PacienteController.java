@@ -37,5 +37,22 @@ public class PacienteController {
         paciente.atualizarDados(dados);
     }
 
+    //Exclusão do Banco de Dados
+//    @DeleteMapping("/{id}")
+//    @Transactional
+//    public void excluir(@PathVariable Long id) {
+//        repository.deleteById(id);
+//    }
+
+
+// Exclusão Lógica
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        var paciente = repository.getReferenceById(id);
+        paciente.excluir();
+
+    }
 }
 
