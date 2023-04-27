@@ -1,5 +1,6 @@
 package com.med.voll.api.medicos;
 
+import com.med.voll.api.consultas.Consulta;
 import com.med.voll.api.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,7 +8,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "medicos")
+import java.util.List;
+
+@Table(name = "MEDICO")
 @Entity(name = "Medico")
 @Getter
 @NoArgsConstructor
@@ -23,6 +26,7 @@ public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
     private String email;
     private String crm;
@@ -36,11 +40,14 @@ public class Medico {
     //os dados contidos no 'objeto dadosEndereco"
     @Embedded
     private Endereco endereco;
-
     private Boolean ativo;
+
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Consulta> pacientes;
 
     public Medico(DadosDeCadastroDeMedicos dados) {
         this.ativo = true;
+        this.pacientes = getPacientes();
         this.nome = dados.nome();
         this.email = dados.email();
         this.crm = dados.crm();

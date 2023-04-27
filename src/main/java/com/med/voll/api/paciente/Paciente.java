@@ -1,5 +1,6 @@
 package com.med.voll.api.paciente;
 
+import com.med.voll.api.consultas.Consulta;
 import com.med.voll.api.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,9 +8,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Entity(name = "Paciente")
-@Table(name = "pacientes")
+@Table(name = "PACIENTE")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,6 +30,9 @@ public class Paciente {
     @Embedded
     private Endereco endereco;
 
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Consulta> medicos;
+
     public Paciente(DadosDeCadastroDePacientes dados) {
         this.ativo = true;
         this.nome = dados.nome();
@@ -34,7 +40,7 @@ public class Paciente {
         this.telefone = dados.telefone();
         this.cpf = dados.cpf();
         this.endereco = new Endereco(dados.endereco());
-
+        this.medicos = getMedicos();
 
     }
 
