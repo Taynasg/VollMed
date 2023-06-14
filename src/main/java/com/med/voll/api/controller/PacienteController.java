@@ -9,8 +9,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("pacientes")
 public class PacienteController {
@@ -21,9 +19,8 @@ public class PacienteController {
     @Transactional
     @PostMapping
     public void cadatrar(@RequestBody @Valid DadosDeCadastroDePacientes dados) {
-        repository.save(new Paciente(dados));
+            repository.save(new Paciente(dados));
     }
-
     @GetMapping
     public Page<DadosDeListagemDePacientes> listar(@PageableDefault(page = 0, size = 10, sort = {"id"}) Pageable paginacao) {
         return repository.findAll(paginacao).map(DadosDeListagemDePacientes::new);
@@ -46,7 +43,6 @@ public class PacienteController {
 
 
 // Exclusão Lógica
-
     @DeleteMapping("/{id}")
     @Transactional
     public void excluir(@PathVariable Long id) {

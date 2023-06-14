@@ -1,0 +1,1 @@
+ALTER TABLE CONSULTA add HORA_FIM varchar(20) not null;

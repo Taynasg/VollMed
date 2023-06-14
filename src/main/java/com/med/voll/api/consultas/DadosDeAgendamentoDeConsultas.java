@@ -1,27 +1,28 @@
 package com.med.voll.api.consultas;
-
-import com.med.voll.api.medicos.Medico;
-import com.med.voll.api.paciente.Paciente;
+import java.lang.Long;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-import java.util.Date;
 
 public record DadosDeAgendamentoDeConsultas(
+        @NotNull
+        Long idPaciente,
+
+        @NotNull
+        Long idMedico,
+
+        @NotNull @Valid
+        LocalDate dataDaConsulta,
+
+        @NotNull @Valid
+        LocalTime horaInicio,
 
 
         @NotNull @Valid
-        Paciente paciente,
-
-        @NotNull @Valid
-        Medico medico,
-
-        @NotNull @Valid
-        Date dataDaConsulta,
-
-       @NotNull @Valid
-        Date horaDaConsulta
-
+        LocalTime horaFim
 
 ) {
+
 }

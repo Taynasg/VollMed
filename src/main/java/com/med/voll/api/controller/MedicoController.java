@@ -31,7 +31,7 @@ public class MedicoController {
     @Transactional
     public void atualizar(@RequestBody @Valid DadosDeAtualizacaoDeMedicos dadosAtualizados) {
         var medico = repository.getReferenceById(dadosAtualizados.id());
-        medico.atualizandoDados(dadosAtualizados);
+        medico.atualizarDados(dadosAtualizados);
 
     }
 //    Exclusão do banco de dados
@@ -50,4 +50,5 @@ public class MedicoController {
         medico.excluir();
 
     }
+
 }

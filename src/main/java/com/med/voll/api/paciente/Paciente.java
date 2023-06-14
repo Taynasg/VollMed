@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import java.lang.Long;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class Paciente {
     @Embedded
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL,orphanRemoval = true)
+    @ManyToMany(mappedBy = "idPaciente", cascade = CascadeType.ALL)
     private List<Consulta> medicos;
 
     public Paciente(DadosDeCadastroDePacientes dados) {
@@ -62,5 +63,8 @@ public class Paciente {
 
     public void excluir() {
         this.ativo = false;
+
+
+
+        }
     }
-}
